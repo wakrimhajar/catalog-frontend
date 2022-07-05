@@ -1,0 +1,28 @@
+<div class="container mt-3 col-md-6 offset-md-3">
+    <h3 class="my-3">Update a Product</h3>
+    <form *ngIf="productUFormGroup" [formGroup]="productUFormGroup" (ngSubmit)="handleUpdateProduct()">
+        <div class="mb-3">
+            <label class="form-label">ID:</label>
+            <label class="form-label">{{product.id}}</label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control">
+            <small *ngIf="productUFormGroup.controls['name'].errors && productUFormGroup.controls['name'].touched"
+            class="text-danger">{{prodService.getErrorMessage('Name',productUFormGroup.controls['name'].errors)}}</small>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="text" formControlName="price" class="form-control">
+            <small *ngIf="productUFormGroup.controls['price'].errors && productUFormGroup.controls['price'].touched"
+            class="text-danger">{{prodService.getErrorMessage('Price',productUFormGroup.controls['price'].errors)}}</small>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Promotion</label>
+            <input type="checkbox" formControlName="promotion" class="form-check">
+        </div>
+        <div class="d-grid gap-2">
+        <button [disabled]="productUFormGroup.invalid" class="btn btn-info" type="submit">Save</button>
+        </div>
+    </form>
+</div>
